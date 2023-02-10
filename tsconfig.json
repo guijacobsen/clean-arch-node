@@ -1,0 +1,9 @@
+{
+  "compilerOptions": {
+    "outDir": "./dist",
+    "module": "commonjs",
+    "target": "ES2016",
+    "esModuleInterop": true,
+    "allowJs": true
+  }
+}
