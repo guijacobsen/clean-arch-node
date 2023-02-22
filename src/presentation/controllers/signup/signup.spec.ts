@@ -59,7 +59,7 @@ describe("SignUp Controller", () => {
       body: {
         email: "any_email@mail.com",
         password: "any_password",
-        password_confirmation: "any_password",
+        passwordConfirmation: "any_password",
       },
     };
     const httpResponse = await sut.handle(httpRequest);
@@ -73,7 +73,7 @@ describe("SignUp Controller", () => {
       body: {
         name: "any_name",
         password: "any_password",
-        password_confirmation: "any_password",
+        passwordConfirmation: "any_password",
       },
     };
     const httpResponse = await sut.handle(httpRequest);
@@ -87,7 +87,7 @@ describe("SignUp Controller", () => {
       body: {
         name: "any_name",
         email: "any_email@mail.com",
-        password_confirmation: "any_password",
+        passwordConfirmation: "any_password",
       },
     };
     const httpResponse = await sut.handle(httpRequest);
@@ -107,24 +107,24 @@ describe("SignUp Controller", () => {
     const httpResponse = await sut.handle(httpRequest);
     expect(httpResponse.statusCode).toBe(400);
     expect(httpResponse.body).toEqual(
-      new MissingParamError("password_confirmation")
+      new MissingParamError("passwordConfirmation")
     );
   });
 
-  test("should return 400 if password_confirmation fails", async () => {
+  test("should return 400 if passwordConfirmation fails", async () => {
     const { sut } = makeSut();
     const httpRequest = {
       body: {
         name: "any_name",
         email: "any_email@mail.com",
         password: "any_password",
-        password_confirmation: "invalid_password",
+        passwordConfirmation: "invalid_password",
       },
     };
     const httpResponse = await sut.handle(httpRequest);
     expect(httpResponse.statusCode).toBe(400);
     expect(httpResponse.body).toEqual(
-      new InvalidParamError("password_confirmation")
+      new InvalidParamError("passwordConfirmation")
     );
   });
 
@@ -136,7 +136,7 @@ describe("SignUp Controller", () => {
         name: "any_name",
         email: "invalid_email@mail.com",
         password: "any_password",
-        password_confirmation: "any_password",
+        passwordConfirmation: "any_password",
       },
     };
     const httpResponse = await sut.handle(httpRequest);
@@ -152,7 +152,7 @@ describe("SignUp Controller", () => {
         name: "any_name",
         email: "any_email@mail.com",
         password: "any_password",
-        password_confirmation: "any_password",
+        passwordConfirmation: "any_password",
       },
     };
     sut.handle(httpRequest);
@@ -170,7 +170,7 @@ describe("SignUp Controller", () => {
         name: "any_name",
         email: "any_email@mail.com",
         password: "any_password",
-        password_confirmation: "any_password",
+        passwordConfirmation: "any_password",
       },
     };
     const httpResponse = await sut.handle(httpRequest);
@@ -186,7 +186,7 @@ describe("SignUp Controller", () => {
         name: "any_name",
         email: "any_email@mail.com",
         password: "any_password",
-        password_confirmation: "any_password",
+        passwordConfirmation: "any_password",
       },
     };
     sut.handle(httpRequest);
@@ -208,7 +208,7 @@ describe("SignUp Controller", () => {
         name: "any_name",
         email: "any_email@mail.com",
         password: "any_password",
-        password_confirmation: "any_password",
+        passwordConfirmation: "any_password",
       },
     };
     const httpResponse = await sut.handle(httpRequest);
@@ -223,7 +223,7 @@ describe("SignUp Controller", () => {
         name: "valid_name",
         email: "valid_email@mail.com",
         password: "valid_password",
-        password_confirmation: "valid_password",
+        passwordConfirmation: "valid_password",
       },
     };
     const httpResponse = await sut.handle(httpRequest);
