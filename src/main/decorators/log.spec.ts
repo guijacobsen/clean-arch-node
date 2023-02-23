@@ -7,12 +7,12 @@ import {
 } from "../../presentation/protocols";
 import { LogControllerDecorator } from "./log";
 
-const successHttpResponse: HttpResponse = {
+const makeFakeSuccessHttpResponse = (): HttpResponse => ({
   statusCode: 200,
   body: {
     name: "any_name",
   },
-};
+});
 
 const makeLogErrorRepository = (): LogErrorRepository => {
   class LogErrorRepositoryStub implements LogErrorRepository {
@@ -27,7 +27,7 @@ const makeLogErrorRepository = (): LogErrorRepository => {
 const makeController = (): Controller => {
   class ControllerStub implements Controller {
     handle(httpRequest: HttpRequest): Promise<HttpResponse> {
-      return new Promise((resolve) => resolve(successHttpResponse));
+      return new Promise((resolve) => resolve(makeFakeSuccessHttpResponse()));
     }
   }
 
@@ -86,7 +86,7 @@ describe("LogController Decorator", () => {
     };
     const httpResponse = await sut.handle(httpRequest);
 
-    expect(httpResponse).toEqual(successHttpResponse);
+    expect(httpResponse).toEqual(makeFakeSuccessHttpResponse());
   });
 
   test("should call LogErrorRepository with correct error if controller returns a server error", async () => {
