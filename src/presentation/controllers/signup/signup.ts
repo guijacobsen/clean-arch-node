@@ -6,15 +6,22 @@ import {
   HttpRequest,
   HttpResponse,
   AddAccount,
+  Validation,
 } from "./signup-protocol";
 
 export class SignUpController implements Controller {
   private readonly emailValidator: EmailValidator;
   private readonly addAccount: AddAccount;
+  private readonly validation: Validation;
 
-  constructor(emailValidator: EmailValidator, addAccount: AddAccount) {
+  constructor(
+    emailValidator: EmailValidator,
+    addAccount: AddAccount,
+    validation: Validation
+  ) {
     this.emailValidator = emailValidator;
     this.addAccount = addAccount;
+    this.validation = validation;
   }
 
   async handle(httpRequest: HttpRequest): Promise<HttpResponse> {
@@ -40,6 +47,8 @@ export class SignUpController implements Controller {
       if (!this.emailValidator.isValid(email)) {
         return badRequest(new InvalidParamError("email"));
       }
+
+      this.validation.validate(httpRequest.body);
 
       const account = await this.addAccount.add({
         name,
