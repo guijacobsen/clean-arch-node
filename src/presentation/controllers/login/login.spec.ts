@@ -1,13 +1,11 @@
-import { Auth } from "mongodb";
-import { Authentication } from "../../../domain/usecases/authentication";
+import { Authentication, EmailValidator, HttpRequest } from "./login-protocol";
 import { InvalidParamError, MissingParamError } from "../../errors";
 import {
   badRequest,
   serverError,
   unauthorized,
 } from "../../helpers/http-helpers";
-import { HttpRequest } from "../../protocols";
-import { EmailValidator } from "../signup/signup-protocol";
+
 import { LoginController } from "./login";
 
 const makeEmailValidator = (): EmailValidator => {
