@@ -22,6 +22,10 @@ export class LoginController implements Controller {
       );
     }
 
-    this.emailValidator.isValid(httpRequest.body.email);
+    if (!this.emailValidator.isValid(httpRequest.body.email)) {
+      return new Promise((resolve) =>
+        resolve(badRequest(new InvalidParamError("email")))
+      );
+    }
   }
 }
