@@ -10,7 +10,7 @@ import {
   ok,
   serverError,
   unauthorized,
-} from "../../helpers/http-helpers";
+} from "../../helpers/http/http-helpers";
 
 import { LoginController } from "./login";
 

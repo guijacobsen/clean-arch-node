@@ -10,7 +10,7 @@ import {
   ok,
   serverError,
   unauthorized,
-} from "../../helpers/http-helpers";
+} from "../../helpers/http/http-helpers";
 
 export class LoginController implements Controller {
   private readonly authentication: Authentication;
