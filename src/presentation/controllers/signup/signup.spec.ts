@@ -47,12 +47,12 @@ const makeEmailValidator = (): EmailValidator => {
   return new EmailValidatorStub();
 };
 
-interface SubtTypes {
+interface SutTypes {
   sut: SignUpController;
   emailValidatorStub: EmailValidator;
   addAccountStub: AddAccount;
 }
-const makeSut = (): SubtTypes => {
+const makeSut = (): SutTypes => {
   const emailValidatorStub = makeEmailValidator();
   const addAccountStub = makeAddAccount();
   const sut = new SignUpController(emailValidatorStub, addAccountStub);
