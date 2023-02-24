@@ -10,6 +10,7 @@ import {
   AccountModel,
   HttpRequest,
   Validation,
+  HttpResponse,
 } from "./signup-protocol";
 import { SignUpController } from "./signup";
 import { badRequest, ok, serverError } from "../../helpers/http-helpers";
@@ -222,5 +223,19 @@ describe("SignUp Controller", () => {
 
     sut.handle(httpRequest);
     expect(validateSpy).toHaveBeenCalledWith(httpRequest.body);
+  });
+
+  test("should call Validation with correct values", async () => {
+    const { sut, validationStub } = makeSut();
+    jest
+      .spyOn(validationStub, "validate")
+      .mockReturnValueOnce(new MissingParamError("any_field"));
+
+    const httpRequest = makeFakeRequest();
+
+    const httpResponse: HttpResponse = await sut.handle(httpRequest);
+    expect(httpResponse).toEqual(
+      badRequest(new MissingParamError("any_field"))
+    );
   });
 });
