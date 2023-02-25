@@ -6,8 +6,8 @@ import {
   HttpRequest,
   Validation,
   HttpResponse,
-} from "./signup-protocol";
-import { SignUpController } from "./signup";
+} from "./signup-controller-protocol";
+import { SignUpController } from "./signup-controller";
 import { badRequest, ok, serverError } from "../../helpers/http/http-helpers";
 
 const makeFakeRequest = (): HttpRequest => ({
