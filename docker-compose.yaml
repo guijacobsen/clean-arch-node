@@ -1,0 +1,25 @@
+version: "3.7"
+
+services:
+  mongodb:
+    container_name: node_clean_arch_mongodb
+    restart: always
+    image: mongo:4.2.3
+    volumes:
+      - ./data:/data/db
+    ports:
+      - "27017:27017"
+    logging:
+      driver: none
+  app:
+    container_name: node_clean_arch_api
+    restart: always
+    build: .
+    image: guijacobsen/clean-node-api
+    ports:
+      - "5050:5050"
+    volumes:
+      - ./dist:/usr/app/dist
+    command: npm start
+    links:
+      - mongodb
