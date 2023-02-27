@@ -2,7 +2,7 @@ version: "3.7"
 
 services:
   mongodb:
-    container_name: node_clean_arch_mongodb
+    container_name: clean_arch_mongodb
     restart: always
     image: mongo:4.2.3
     volumes:
@@ -12,7 +12,7 @@ services:
     logging:
       driver: none
   app:
-    container_name: node_clean_arch_api
+    container_name: clean_arch_api
     restart: always
     build: .
     image: guijacobsen/clean-node-api
