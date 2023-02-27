@@ -18,8 +18,10 @@ services:
     image: guijacobsen/clean-node-api
     ports:
       - "5050:5050"
+      - "9222:9222"
     volumes:
       - ./dist:/usr/app/dist
-    command: npm start
+      - ./package.json:/usr/app/package.json
+    command: npm run debug
     links:
       - mongodb
